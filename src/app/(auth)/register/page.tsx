@@ -17,7 +17,7 @@ export default function RegisterPage() {
       <AuthCard>
         <div className="space-y-6">
           <div className="text-center">
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-2xl md:text-3xl font-bold">
               Create Account
             </h1>
 

@@ -58,7 +58,7 @@ export default async function FinancePage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-2xl md:text-3xl font-bold">
           Financial Tracker
         </h1>
 
@@ -73,7 +73,7 @@ export default async function FinancePage() {
             Balance
           </p>
 
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-2xl md:text-3xl font-bold">
             {formatRupiah(balance)}
           </h2>
         </div>
@@ -83,7 +83,7 @@ export default async function FinancePage() {
             Income
           </p>
 
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-2xl md:text-3xl font-bold">
             {formatRupiah(totalIncome)}
           </h2>
         </div>
@@ -93,7 +93,7 @@ export default async function FinancePage() {
             Expense
           </p>
 
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-2xl md:text-3xl font-bold">
             {formatRupiah(totalExpense)}
           </h2>
         </div>

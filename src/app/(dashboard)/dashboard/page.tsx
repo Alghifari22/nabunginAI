@@ -78,14 +78,14 @@ export default async function DashboardPage() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-7xl mx-auto space-y-8">
       <div>
-        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <h1 className="text-2xl md:text-3xl font-bold">Dashboard</h1>
 
         <p className="text-muted-foreground">Your financial overview</p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
         <div
           className="
             rounded-2xl
@@ -100,7 +100,7 @@ export default async function DashboardPage() {
         >
           <p className="text-muted-foreground">Balance</p>
 
-          <h2 className="text-3xl font-bold">{formatRupiah(balance)}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">{formatRupiah(balance)}</h2>
         </div>
 
         <div
@@ -117,7 +117,7 @@ export default async function DashboardPage() {
         >
           <p className="text-muted-foreground">Income</p>
 
-          <h2 className="text-3xl font-bold">{formatRupiah(totalIncome)}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">{formatRupiah(totalIncome)}</h2>
         </div>
 
         <div
@@ -134,7 +134,7 @@ export default async function DashboardPage() {
         >
           <p className="text-muted-foreground">Expense</p>
 
-          <h2 className="text-3xl font-bold">{formatRupiah(totalExpense)}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">{formatRupiah(totalExpense)}</h2>
         </div>
       </div>
 
@@ -163,7 +163,7 @@ export default async function DashboardPage() {
         <FinanceChart data={monthlyData} />
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
         {goals.slice(0, 2).map((goal) => {
           const progress = (goal.savedAmount / goal.targetAmount) * 100;
 
