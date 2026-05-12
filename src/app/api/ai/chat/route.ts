@@ -23,14 +23,40 @@ export async function POST(req: Request) {
       );
     }
 
-    const body = await req.json();
-
-    const message = body.message;
-
     const user = await prisma.user.findUnique({
       where: {
         email: session.user.email,
       },
+    });
+
+    const body = await req.json();
+
+    const message = body.message;
+
+    await prisma.aIMessage.create({
+      data: {
+        role: "user",
+
+        content: message,
+
+        user: {
+          connect: {
+            id: user?.id,
+          },
+        },
+      },
+    });
+
+    const previousMessages = await prisma.aIMessage.findMany({
+      where: {
+        userId: user?.id,
+      },
+
+      orderBy: {
+        createdAt: "asc",
+      },
+
+      take: 10,
     });
 
     if (!user) {
@@ -70,6 +96,13 @@ export async function POST(req: Request) {
       .filter((transaction) => transaction.type === "expense")
       .reduce((acc, transaction) => acc + transaction.amount, 0);
 
+    const memoryContext = previousMessages
+      .map(
+        (message: { role: string; content: string }) =>
+          `${message.role}: ${message.content}`,
+      )
+      .join("\n");
+
     const prompt = `
 You are Nabungin.AI assistant.
 
@@ -90,7 +123,7 @@ User Financial Context:
 
 Income: ${totalIncome}
 Expense: ${totalExpense}
-
+Conversation History: ${memoryContext}
 Goals:
 ${goals
   .map(
@@ -113,6 +146,12 @@ Rules:
 - Use Indonesian language
 - Avoid sounding robotic
 - Use user's financial data only when useful
+- You already know the user's financial data
+- Do not ask for financial information that already exists
+- Use the available financial data immediately
+- Give calculations and estimations directly when possible
+- Be proactive and analytical
+- Avoid unnecessary follow-up questions
 
 User Message:
 ${message}
@@ -121,6 +160,17 @@ ${message}
     const result = await geminiModel.generateContent(prompt);
 
     const response = result.response.text();
+    await prisma.aIMessage.create({
+      data: {
+        role: "assistant",
+        content: response,
+        user: {
+            connect: {
+                id: user.id,
+            },
+        },
+      },
+    });
 
     return NextResponse.json({
       response,

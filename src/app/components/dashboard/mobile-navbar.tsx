@@ -8,7 +8,7 @@ import {
   LayoutDashboard,
   PiggyBank,
   Wallet,
-  Bot,
+  Settings,
 } from "lucide-react";
 
 const menus = [
@@ -31,9 +31,9 @@ const menus = [
   },
 
   {
-    label: "AI",
-    icon: Bot,
-    href: "/dashboard",
+      title: "Settings",
+      icon: Settings,
+      href: "/settings",
   },
 ];
 

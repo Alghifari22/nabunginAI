@@ -16,9 +16,10 @@ model User {
 
   accounts Account[]
   sessions Session[]
-  
+
   goals        Goal[]
   transactions Transaction[]
+  aiMessages AIMessage[]
 }
 
 model Goal {
@@ -95,4 +96,15 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model AIMessage {
+  id        String   @id @default(cuid())
+  role      String
+  content   String
+  userId    String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
 }

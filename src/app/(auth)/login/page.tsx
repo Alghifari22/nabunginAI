@@ -1,6 +1,7 @@
 import { AuthCard } from "../../features/auth/components/auth-card";
 import { LoginForm } from "../../features/auth/components/login-form";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function LoginPage() {
   return (
@@ -14,7 +15,25 @@ export default function LoginPage() {
       <AuthCard>
         <div className="space-y-6">
           <div className="text-center space-y-1">
-            <div className="text-2xl mb-3">💰</div>
+            <div
+                className="
+                    mx-auto
+                    mb-4
+                    size-16
+                    rounded-3xl
+                    overflow-hidden
+                    shadow-lg
+                "
+                >
+                <Image
+                    src="/icons/67e6b4f1-88fd-4de3-82b4-d316de92c5d1.jpg"
+                    alt="Nabungin AI"
+                    width={64}
+                    height={64}
+                    className="object-cover"
+                    priority
+                />
+                </div>
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Welcome back</h1>
             <p className="text-muted-foreground text-sm">Sign in to your Nabungin.AI account</p>
           </div>

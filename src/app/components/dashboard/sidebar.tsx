@@ -4,12 +4,14 @@ import {
   LayoutDashboard,
   PiggyBank,
   Wallet,
-  Bot,
   Settings,
+  LogOut,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { signOut } from "next-auth/react";
+import { Button } from "@/components/ui/button";
 
 const menus = [
   {
@@ -26,11 +28,6 @@ const menus = [
     title: "Finance",
     icon: Wallet,
     href: "/finance",
-  },
-  {
-    title: "AI Assistant",
-    icon: Bot,
-    href: "/ai",
   },
   {
     title: "Settings",
@@ -61,7 +58,7 @@ export function Sidebar() {
                 "w-full flex items-center gap-3 rounded-xl px-4 py-3 transition-colors",
                 isActive
                   ? "bg-primary text-primary-foreground font-medium"
-                  : "hover:bg-muted text-muted-foreground hover:text-foreground"
+                  : "hover:bg-muted text-muted-foreground hover:text-foreground",
               )}
             >
               <Icon size={20} />
@@ -70,6 +67,25 @@ export function Sidebar() {
           );
         })}
       </nav>
+      <div className="pt-6 border-t">
+        <Button
+          variant="outline"
+          className="
+            w-full
+            justify-start
+            rounded-xl
+            h-11
+          "
+          onClick={() =>
+            signOut({
+              callbackUrl: "/login",
+            })
+          }
+        >
+          <LogOut className="size-4 mr-2" />
+          Logout
+        </Button>
+      </div>
     </aside>
   );
 }
