@@ -50,7 +50,7 @@ export default function SplashPage() {
           "
         >
           <Image
-            src="/icons/app-icon.png"
+            src="/icons/67e6b4f1-88fd-4de3-82b4-d316de92c5d1.jpg"
             alt="Nabungin AI"
             width={96}
             height={96}
