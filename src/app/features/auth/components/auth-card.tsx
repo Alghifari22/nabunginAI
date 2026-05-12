@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 export function AuthCard({
   children,
@@ -6,10 +6,16 @@ export function AuthCard({
   children: React.ReactNode;
 }) {
   return (
-    <Card className="w-full max-w-md border-none shadow-2xl">
-      <CardContent className="p-8">
-        {children}
-      </CardContent>
-    </Card>
+    <div
+      className={cn(
+        "w-full max-w-md",
+        "rounded-3xl border",
+        "bg-background/80 backdrop-blur-xl",
+        "shadow-2xl shadow-black/5",
+        "p-8"
+      )}
+    >
+      {children}
+    </div>
   );
 }
