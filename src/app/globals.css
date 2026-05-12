@@ -125,6 +125,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@layer utilities {
+  .container-dashboard {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
