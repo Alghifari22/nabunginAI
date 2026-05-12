@@ -8,6 +8,8 @@ import { Sidebar } from "../components/dashboard/sidebar";
 
 import { MobileNavbar } from "../components/dashboard/mobile-navbar";
 
+import { AIChatSheet } from "../features/ai/components/ai-chat-sheet";
+
 export default async function DashboardLayout({
   children,
 }: {
@@ -30,6 +32,7 @@ export default async function DashboardLayout({
           {children}
         </main>
       </div>
+      <AIChatSheet />
     </div>
   );
 }
