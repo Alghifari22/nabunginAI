@@ -2,7 +2,7 @@
   "name": "Nabungin.AI",
   "short_name": "Nabungin",
   "description": "Smart financial goal tracker",
-  "start_url": "/",
+  "start_url": "/dashboard",
   "display": "standalone",
   "background_color": "#020817",
   "theme_color": "#020817",
