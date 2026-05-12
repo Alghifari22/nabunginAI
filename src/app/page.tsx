@@ -21,7 +21,7 @@ export default function SplashPage() {
         } else {
           router.push("/login");
         }
-      }, 2500);
+      }, 10000);
     };
 
     checkSession();
