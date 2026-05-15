@@ -2,8 +2,9 @@ import { Goal, Saving } from "@prisma/client";
 import { Progress } from "@/components/ui/progress";
 import { formatRupiah } from "../../../utils/format-rupiah";
 import { AddSavingForm } from "./add-saving-form";
-import { CheckCircle2, Target } from "lucide-react";
+import { CheckCircle2, MoreVertical, Pencil, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { GoalCardActions } from "./goal-card-actions";
 
 type GoalCardProps = {
   goal: Goal & {
@@ -38,7 +39,7 @@ export function GoalCard({ goal }: GoalCardProps) {
             Target: {formatRupiah(goal.targetAmount)}
           </p>
         </div>
-        <div className="shrink-0 text-right">
+        <div className="flex items-center gap-2 shrink-0">
           <span
             className={cn(
               "text-xs font-semibold px-2.5 py-1 rounded-full",
@@ -49,6 +50,8 @@ export function GoalCard({ goal }: GoalCardProps) {
           >
             {isCompleted ? "Completed" : `${progress.toFixed(1)}%`}
           </span>
+          {/* Edit/Delete actions */}
+          <GoalCardActions goal={goal} />
         </div>
       </div>
 
