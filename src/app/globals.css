@@ -159,6 +159,12 @@ body {
   }
 }
 
+/* Floating AI button idle animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-4px) scale(1.02); }
+}
+
 @layer utilities {
   .container-dashboard {
     @apply max-w-7xl mx-auto;

@@ -58,10 +58,10 @@ export function TransactionList({ transactions }: TransactionListProps) {
         {transactions.map((transaction) => (
           <div
             key={transaction.id}
-            className="flex items-center justify-between rounded-2xl border bg-background/70 backdrop-blur-sm p-4 transition-all hover:shadow-md group"
+            className="flex items-center justify-between rounded-2xl border bg-background/70 backdrop-blur-sm p-4 transition-all hover:shadow-md"
           >
             {/* Left: icon + info */}
-            <div className="flex items-center gap-3 min-w-0">
+            <div className="flex items-center gap-3 min-w-0 flex-1">
               <div
                 className={cn(
                   "size-10 rounded-2xl flex items-center justify-center shrink-0",
@@ -93,12 +93,12 @@ export function TransactionList({ transactions }: TransactionListProps) {
               </div>
             </div>
 
-            {/* Right: amount + actions */}
-            <div className="flex items-center gap-2 shrink-0 ml-3">
-              <div className="text-right">
+            {/* Right: amount + action menu */}
+            <div className="flex items-center gap-1 shrink-0 ml-2">
+              <div className="text-right mr-1">
                 <p
                   className={cn(
-                    "font-semibold text-sm",
+                    "font-semibold text-sm whitespace-nowrap",
                     transaction.type === "income"
                       ? "text-emerald-500"
                       : "text-destructive"
@@ -112,27 +112,32 @@ export function TransactionList({ transactions }: TransactionListProps) {
                 </p>
               </div>
 
-              {/* Action menu */}
+              {/* Action menu — always visible (no hover-only on mobile) */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="size-8 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="size-9 rounded-xl shrink-0 text-muted-foreground hover:text-foreground hover:bg-muted"
+                    aria-label="Transaction actions"
                   >
                     <MoreVertical className="size-4" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="rounded-2xl">
+                <DropdownMenuContent
+                  align="end"
+                  sideOffset={4}
+                  className="rounded-2xl min-w-[140px]"
+                >
                   <DropdownMenuItem
-                    className="gap-2 rounded-xl cursor-pointer"
+                    className="gap-2 rounded-xl cursor-pointer h-10"
                     onClick={() => setEditTarget(transaction)}
                   >
                     <Pencil className="size-4" />
                     Edit
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    className="gap-2 rounded-xl cursor-pointer text-destructive focus:text-destructive"
+                    className="gap-2 rounded-xl cursor-pointer h-10 text-destructive focus:text-destructive focus:bg-destructive/10"
                     onClick={() => setDeleteId(transaction.id)}
                   >
                     <Trash2 className="size-4" />
